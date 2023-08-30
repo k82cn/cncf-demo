@@ -3,6 +3,8 @@
 
 ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
 
+NET_DEV="ens9f0"
+
 Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
@@ -13,22 +15,18 @@ Vagrant.configure("2") do |config|
   config.vm.boot_timeout = 600
 
   config.vm.network :public_network,
-    :dev => "ens9f0"
+    :dev => NET_DEV
 
   config.vm.provider "libvirt" do |vb|
     vb.memory = "4096"
     vb.cpus = "4"
     vb.management_network_autostart = true
-    vb.nested = true
-    vb.cpu_mode = "custom"
-    vb.cpu_model = 'IvyBridge'
-
+#     vb.nested = true
+#     vb.cpu_mode = "custom"
+#     vb.cpu_model = 'IvyBridge'
   end
 
+  # Install docker by Vagrant
   config.vm.provision :docker
-
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  # SHELL
 
 end
