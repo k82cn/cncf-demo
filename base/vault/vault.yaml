@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  destination:
+    namespace: vault
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - repoURL: https://helm.releases.hashicorp.com
+      targetRevision: 0.25.0
+      chart: vault
+  syncPolicy:
+    automated:
+      prune: true
+

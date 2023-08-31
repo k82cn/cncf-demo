@@ -38,7 +38,7 @@ $ sudo ./bring_up_env.sh
 $ argoPass=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 $ echo $argoPass
 
-$ argoURL=$(minikube service argocd-server -n argocd --url | tail -n 1 | sed -e 's|http://||')
+$ argoURL=$(minikube service argo-cd-argocd-server -n argocd --url | tail -n 1 | sed -e 's|http://||')
 $ echo $argoURL
 
 $ argocd login --insecure --grpc-web $argoURL  --username admin --password $argoPass

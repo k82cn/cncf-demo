@@ -20,6 +20,12 @@ curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/lat
 sudo install argocd-linux-amd64 /usr/local/bin/argocd
 rm argocd-linux-amd64
 
+# Download the binary
+curl -sLO https://github.com/argoproj/argo-workflows/releases/download/v3.4.10/argo-linux-amd64.gz
+gunzip argo-linux-amd64.gz
+sudo install argo-linux-amd64 /usr/local/bin/argo
+rm argo-linux-amd64
+
 # kubectl create namespace argocd
 # kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 

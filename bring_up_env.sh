@@ -13,4 +13,6 @@ vagrant ssh -- -t "/bin/bash /opt/cncf-demo/install_minikube.sh"
 vagrant upload ./install_argocd.sh /opt/cncf-demo/install_argocd.sh
 vagrant ssh -- -t "/bin/bash /opt/cncf-demo/install_argocd.sh"
 
-
+vagrant upload ./base /opt/cncf-demo/base
+vagrant ssh -- -t "kubectl apply -k /opt/cncf-demo/base/vault"
+vagrant ssh -- -t "kubectl apply -k /opt/cncf-demo/base/cert-mgr"
