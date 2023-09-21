@@ -1,9 +1,13 @@
 # cncf-demo
 The demo of CNCF projects
 
-
-
 ## Requirements
+
+### OVS
+
+```
+$ sudo apt install -y openvswitch-switch openvswitch-common
+```
 
 ### Vagrant
 
@@ -21,14 +25,11 @@ $ sudo apt-get install -y qemu libvirt-daemon-system ebtables libguestfs-tools \
 $ sudo vagrant plugin install vagrant-libvirt
 ```
 
-
 ## Startup
-
 
 ```
 $ sudo ./bring_up_env.sh
 ```
-
 
 ## Tips
 

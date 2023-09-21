@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - cert-mgr.yaml
 
 commonLabels:
   app.kubernetes.io/name: cert-manager
@@ -13,5 +12,29 @@ commonAnnotations:
 
 generatorOptions:
   disableNameSuffixHash: true
+
+helmCharts:
+  - name: cert-manager
+    repo: https://charts.jetstack.io
+    version: v1.11.1
+    namespace: cert-manager
+    releaseName: cert-manager
+    includeCRDs: true
+    valuesInline:
+      installCRDs: true
+      #      prometheus:
+      #        enabled: true
+      #        servicemonitor:
+      #          enabled: true
+      #          prometheusInstance: forge-monitoring
+      #      webhook:
+      #        extraArgs:
+      #          - "--feature-gates=AdditionalCertificateOutputFormats=true"
+      #      csiDriver:
+      #        install: true
+      #      featureGates: "AdditionalCertificateOutputFormats=true"
+      #      extraArgs:
+      #        - "--controllers=*,-certificaterequests-approver"
+    valuesMerge: override
 
 
